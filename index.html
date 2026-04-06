@@ -269,11 +269,11 @@
           <use href="./svg/floppy.svg#floppy" />
         </svg>
         <p class="dialog__title">Вставьте дискету, чтобы продолжить</p>
-        <div class="button-form">
-          <button class="dialog__button button" type="button" id="closeDialogBtn">
+        <form method="dialog" class="button-form" id="dialogForm" onsubmit="return false;">
+          <button class="dialog__button button" type="submit" id="closeDialogBtn">
             <span class="button__text">ОК</span>
           </button>
-        </div>
+        </form>
       </dialog>
     </main>
     <script src="./scripts/set-theme.js"></script>
@@ -282,7 +282,7 @@
       (function() {
         const saveBtn = document.getElementById('memorySaveBtn');
         const dialog = document.getElementById('saveDialog');
-        const closeBtn = document.getElementById('closeDialogBtn');
+        const form = document.getElementById('dialogForm');
         
         if (saveBtn && dialog) {
           saveBtn.addEventListener('click', function(e) {
@@ -293,8 +293,8 @@
           });
         }
         
-        if (closeBtn && dialog) {
-          closeBtn.addEventListener('click', function(e) {
+        if (form && dialog) {
+          form.addEventListener('submit', function(e) {
             e.preventDefault();
             e.stopPropagation();
             dialog.close();
