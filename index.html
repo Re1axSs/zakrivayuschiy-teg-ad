@@ -22,27 +22,15 @@
         <h1 class="logo-group__title-second">закрывающий тег</h1>
       </div>
       <nav class="theme-menu header__theme-menu">
-        <!-- Не меняйте разметку этого списка, иначе скрипты перестанут работать -->
         <ul class="theme-menu__list">
           <li class="theme-menu__item">
-            <button type="button" data-theme="dark" class="theme-menu__button">
-              Темно
-            </button>
+            <button type="button" data-theme="dark" class="theme-menu__button">Темно</button>
           </li>
           <li class="theme-menu__item">
-            <button
-              type="button"
-              data-theme="auto"
-              disabled
-              class="theme-menu__button"
-            >
-              Авто
-            </button>
+            <button type="button" data-theme="auto" disabled class="theme-menu__button">Авто</button>
           </li>
           <li class="theme-menu__item">
-            <button type="button" data-theme="light" class="theme-menu__button">
-              Светло
-            </button>
+            <button type="button" data-theme="light" class="theme-menu__button">Светло</button>
           </li>
         </ul>
       </nav>
@@ -269,36 +257,32 @@
           <use href="./svg/floppy.svg#floppy" />
         </svg>
         <p class="dialog__title">Вставьте дискету, чтобы продолжить</p>
-        <form method="dialog" class="button-form" id="dialogForm" onsubmit="return false;">
-          <button class="dialog__button button" type="submit" id="closeDialogBtn">
+        <div class="button-form">
+          <button class="dialog__button button" type="button" id="closeDialogBtn">
             <span class="button__text">ОК</span>
           </button>
-        </form>
+        </div>
       </dialog>
     </main>
     <script src="./scripts/set-theme.js"></script>
     <script src="./scripts/like.js"></script>
     <script>
       (function() {
-        const saveBtn = document.getElementById('memorySaveBtn');
-        const dialog = document.getElementById('saveDialog');
-        const form = document.getElementById('dialogForm');
+        const saveButton = document.getElementById('memorySaveBtn');
+        const dialogWindow = document.getElementById('saveDialog');
+        const closeButton = document.getElementById('closeDialogBtn');
         
-        if (saveBtn && dialog) {
-          saveBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            dialog.showModal();
-            return false;
+        if (saveButton && dialogWindow) {
+          saveButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            dialogWindow.showModal();
           });
         }
         
-        if (form && dialog) {
-          form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            dialog.close();
-            return false;
+        if (closeButton && dialogWindow) {
+          closeButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            dialogWindow.close();
           });
         }
       })();
