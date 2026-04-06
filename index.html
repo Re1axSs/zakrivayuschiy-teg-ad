@@ -257,32 +257,41 @@
           <use href="./svg/floppy.svg#floppy" />
         </svg>
         <p class="dialog__title">Вставьте дискету, чтобы продолжить</p>
-        <div class="button-form">
-          <button class="dialog__button button" type="button" id="closeDialogBtn">
+        <form method="dialog" class="button-form" id="dialogForm">
+          <button class="dialog__button button" type="submit" id="closeDialogBtn">
             <span class="button__text">ОК</span>
           </button>
-        </div>
+        </form>
       </dialog>
     </main>
     <script src="./scripts/set-theme.js"></script>
     <script src="./scripts/like.js"></script>
     <script>
       (function() {
-        const saveButton = document.getElementById('memorySaveBtn');
-        const dialogWindow = document.getElementById('saveDialog');
-        const closeButton = document.getElementById('closeDialogBtn');
+        var saveButton = document.getElementById('memorySaveBtn');
+        var dialog = document.getElementById('saveDialog');
+        var form = document.getElementById('dialogForm');
+        var closeButton = document.getElementById('closeDialogBtn');
         
-        if (saveButton && dialogWindow) {
+        if (saveButton && dialog) {
           saveButton.addEventListener('click', function(event) {
             event.preventDefault();
-            dialogWindow.showModal();
+            dialog.showModal();
           });
         }
         
-        if (closeButton && dialogWindow) {
+        if (form && dialog) {
+          form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            dialog.close();
+          });
+        }
+        
+        // Дополнительная защита для кнопки закрытия (на случай, если форма не перехватит)
+        if (closeButton && dialog) {
           closeButton.addEventListener('click', function(event) {
             event.preventDefault();
-            dialogWindow.close();
+            dialog.close();
           });
         }
       })();
