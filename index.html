@@ -256,46 +256,52 @@
           </button>
         </div>
       </article>
-<button class="save-button button" type="button" id="memorySaveBtn">
-  <svg class="save-icon" viewBox="0 0 21 21">
-    <use href="./svg/floppy.svg#floppy" />
-  </svg>
-  <span class="button__text">Сохранить на память</span>
-</button>
 
-<dialog class="dialog" id="saveDialog">
-  <svg class="dialog__icon" viewBox="0 0 21 21">
-    <use href="./svg/floppy.svg#floppy" />
-  </svg>
-  <p class="dialog__title">Вставьте дискету, чтобы продолжить</p>
-  <form method="dialog" class="button-form">
-    <button class="dialog__button button" id="closeDialogBtn">
-      <span class="button__text">ок</span>
-    </button>
-  </form>
-</dialog>
+      <button class="save-button button" type="button" id="memorySaveBtn">
+        <svg class="save-icon" viewBox="0 0 21 21">
+          <use href="./svg/floppy.svg#floppy" />
+        </svg>
+        <span class="button__text">Сохранить на память</span>
+      </button>
+
+      <dialog class="dialog" id="saveDialog">
+        <svg class="dialog__icon" viewBox="0 0 21 21">
+          <use href="./svg/floppy.svg#floppy" />
+        </svg>
+        <p class="dialog__title">Вставьте дискету, чтобы продолжить</p>
+        <div class="button-form">
+          <button class="dialog__button button" type="button" id="closeDialogBtn">
+            <span class="button__text">ОК</span>
+          </button>
+        </div>
+      </dialog>
     </main>
     <script src="./scripts/set-theme.js"></script>
     <script src="./scripts/like.js"></script>
     <script>
-  (function() {
-    const saveBtn = document.getElementById('memorySaveBtn');
-    const dialog = document.getElementById('saveDialog');
-    const closeBtn = document.getElementById('closeDialogBtn');
-    
-    if (saveBtn && dialog) {
-      saveBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        dialog.showModal();
-      });
-    }
-    
-    if (closeBtn && dialog) {
-      closeBtn.addEventListener('click', function(e) {
-        dialog.close();
-      });
-    }
-  })();
-</script>
+      (function() {
+        const saveBtn = document.getElementById('memorySaveBtn');
+        const dialog = document.getElementById('saveDialog');
+        const closeBtn = document.getElementById('closeDialogBtn');
+        
+        if (saveBtn && dialog) {
+          saveBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            dialog.showModal();
+            return false;
+          });
+        }
+        
+        if (closeBtn && dialog) {
+          closeBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            dialog.close();
+            return false;
+          });
+        }
+      })();
+    </script>
   </body>
 </html>
